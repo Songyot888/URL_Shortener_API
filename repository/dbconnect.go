@@ -25,13 +25,7 @@ func NewConnectDB() (*gorm.DB, error) {
 			return nil, err
 		}
 
-		err = godotenv.Load()
-		if err != nil {
-			log.Printf("⚠️ godotenv load error: %v", err)
-		} else {
-			log.Printf("✅ DB_NAME = %s", os.Getenv("DB_NAME"))
-			log.Printf("✅ DB_HOST = %s", os.Getenv("DB_HOST"))
-		}
+		godotenv.Load()
 
 		dsn := viper.GetString("supabase.dsn")
 		dsn = strings.ReplaceAll(dsn, "DB_HOST", os.Getenv("DB_HOST"))
@@ -39,6 +33,8 @@ func NewConnectDB() (*gorm.DB, error) {
 		dsn = strings.ReplaceAll(dsn, "DB_USER", os.Getenv("DB_USER"))
 		dsn = strings.ReplaceAll(dsn, "DB_PASSWORD", os.Getenv("DB_PASSWORD"))
 		dsn = strings.ReplaceAll(dsn, "DB_NAME", os.Getenv("DB_NAME"))
+
+		log.Printf("DSN = %s", dsn)
 
 		database, err := gorm.Open(postgres.New(postgres.Config{
 			DSN:                  dsn,

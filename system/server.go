@@ -14,7 +14,7 @@ import (
 func StartServer() {
 	// Initialize your server and routes here.
 	// For example, you can use the net/http package to create a simple HTTP server.
-	_ = godotenv.Load()
+	godotenv.Load()
 
 	gin.SetMode(os.Getenv("GIN_MODE"))
 
