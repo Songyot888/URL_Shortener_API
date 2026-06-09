@@ -59,7 +59,7 @@ func createUrl(c *gin.Context) {
 	var createDTOResponse dto.CreateUrlResponse
 	copier.Copy(&createDTOResponse, &createdUrl)
 
-	NewUrl := c.Request.Host + "/" + createDTOResponse.ShortCode
+	NewUrl := "https://u.ulshot.shop/" + createDTOResponse.ShortCode
 
 	c.JSON(201, gin.H{"message": "URL created successfully",
 		"id":           createDTOResponse.Id,
