@@ -14,6 +14,7 @@ func UrlController(route *gin.Engine) {
 	routes := route.Group("/api/urls")
 	{
 		routes.GET("/", getAllUrls)
+		routes.HEAD("/", getAllUrls)
 		routes.POST("/create", createUrl)
 	}
 	route.GET("/:shortCode", getNewUrlByShortCode)
